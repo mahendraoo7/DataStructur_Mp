@@ -29,7 +29,7 @@ int delete (){
 }
 
 int display(){
-    for(int i=0;i<=top; i++){
+    for(int i=0;i<=top;i++){
 
         printf("%d ",a[i]);
         
@@ -41,6 +41,7 @@ int main (){
 
     int y;
 
+ 
     printf("Press 1 to insert \n");
     printf("Press 2 to delete \n");
     printf("Press 3 to to display\n");
@@ -52,11 +53,7 @@ int main (){
     switch(y){
         
         case 1:
-        intsertEnd(100);
-        intsertEnd(200);
-        intsertEnd(300);
-        intsertEnd(400);
-        intsertEnd(500);
+        intsertEnd(y);
         break;
 
         case 2:
@@ -73,7 +70,16 @@ int main (){
         dafualt:
         break;
 
+        
+      
     }
 
-    display();
+       intsertEnd(10);
+       intsertEnd(20);
+       intsertEnd(30);
+       intsertEnd(40);
+       intsertEnd(50);
+
+
+       display();
 }
