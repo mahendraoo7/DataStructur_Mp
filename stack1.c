@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #define n 5
 int a[n], top = -1,ch,data;
 
