@@ -7,39 +7,39 @@ void enQueue(int);
 void deQueue();
 void display();
 
-int items[SIZE], front = -1, rear = -1;
+int items[SIZE], f = -1, r = -1;
 
 
 void enQueue(int value) {
-  if (rear == SIZE - 1)
+  if (r == SIZE - 1)
     printf("\nQueue is Full!!");
   else {
-    if (front == -1)
-      front = 0;
-    rear++;
-    items[rear] = value;
+    if (f == -1)
+      f = 0;
+    r++;
+    items[r] = value;
     printf("\nInserted -> %d", value);
   }
 }
 
 void deQueue() {
-  if (front == -1)
+  if (f == -1)
     printf("\nQueue is Empty!!");
   else {
-    printf("\nDeleted : %d", items[front]);
-    front++;
-    if (front > rear)
-      front = rear = -1;
+    printf("\nDeleted : %d", items[f]);
+    f++;
+    if (f > r)
+      f = r = -1;
   }
 }
 
 void display() {
-  if (rear == -1)
+  if (r == -1)
     printf("\nQueue is Empty!!!");
   else {
     int i;
     printf("\nQueue elements are:\n");
-    for (i = front; i <= rear; i++)
+    for (i = f; i <= r; i++)
       printf("%d  ", items[i]);
   }
   printf("\n");
@@ -49,10 +49,15 @@ int main() {
   deQueue();
 
   enQueue(10);
+  enQueue(20);
+  enQueue(30);
+  enQueue(40);
 
+  
   display();
 
 
+  deQueue();
   deQueue();
 
   display();
