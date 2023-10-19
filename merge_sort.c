@@ -48,7 +48,7 @@ int main()
    int a[15], n=15,i;
 
    for(i=0;i<n;i++)
-     a[i] = rand()%99+1;
+     a[i] = rand()%80;
 
     printf("Before Sorting Array is: \n");
 
