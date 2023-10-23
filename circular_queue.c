@@ -58,7 +58,7 @@ int main() {
 
 
   deQueue();
-  deQueue();
+  deQueue();    
 
   display();
 
