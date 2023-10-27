@@ -3,10 +3,10 @@
 
 struct node
 {
-
     int data;
     struct node *next;
 };
+
 struct node *head = NULL;
 
 void insertEnd(int val)
@@ -19,15 +19,19 @@ void insertEnd(int val)
     if (head == NULL)
     {
         head = temp;
+        temp->next = head;
         return;
     }
-    while (ptr->next != NULL)
+
+    while (ptr->next != head)
     {
         ptr = ptr->next;
     }
+
     ptr->next = temp;
-    return;
+    temp->next = head;
 }
+
 void insertFirst(int val)
 {
     struct node *ptr = head;
@@ -36,14 +40,21 @@ void insertFirst(int val)
 
     if (head == NULL)
     {
-        temp->next = NULL;
         head = temp;
+        temp->next = head;
         return;
     }
-    temp->next = ptr;
+
+    while (ptr->next != head)
+    {
+        ptr = ptr->next;
+    }
+
+    ptr->next = temp;
+    temp->next = head;
     head = temp;
-    return;
 }
+
 void insertMid(int val, int pos)
 {
     struct node *ptr = head;
@@ -57,51 +68,51 @@ void insertMid(int val, int pos)
 
     temp->next = ptr->next;
     ptr->next = temp;
-    return;
 }
+
 void deleteEnd()
 {
     struct node *ptr = head;
-
     struct node *prev;
+
     if (head == NULL)
     {
         printf("List is already empty....");
         return;
     }
-    else if (head->next == NULL)
-    {
-        head = NULL;
-        free(ptr);
-        return;
-    }
-    while (ptr->next != NULL)
+
+    while (ptr->next != head)
     {
         prev = ptr;
         ptr = ptr->next;
     }
-    prev->next = NULL;
+
+    prev->next = head;
     free(ptr);
-    return;
 }
+
 void deleteFirst()
 {
     struct node *ptr = head;
+    struct node *temp;
+
     if (head == NULL)
     {
         printf("List is already empty....");
         return;
     }
-    else if (head->next == NULL)
+
+    while (ptr->next != head)
     {
-        head = NULL;
-        free(ptr);
-        return;
+        ptr = ptr->next;
     }
-    head = ptr->next;
-    free(ptr);
-    return;
+
+    temp = head;
+    head = head->next;
+    ptr->next = head;
+    free(temp);
 }
+
 void deleteMid(int pos)
 {
     struct node *ptr = head;
@@ -112,40 +123,44 @@ void deleteMid(int pos)
         prev = ptr;
         ptr = ptr->next;
     }
+
     prev->next = ptr->next;
     free(ptr);
-    return;
 }
+
 void display()
 {
     struct node *ptr = head;
+
     if (head == NULL)
     {
         printf("List is empty....");
+        return;
     }
-    else
+
+    do
     {
-        while (ptr != NULL)
-        {
-            printf("%d ", ptr->data);
-            ptr = ptr->next;
-        }
-        printf("\n");
-    }
+        printf("%d ", ptr->data);
+        ptr = ptr->next;
+    } while (ptr != head);
+
+    printf("\n");
 }
+
 int main()
 {
     int choice, value, position;
 
     while (1)
     {
-        printf("1. last Insert \n");
-        printf("2. last Delete \n");
-        printf("3. first Insert\n");
-        printf("4. first Delete\n");
-        printf("5. mid Insert \n");
-        printf("6. mid Delete \n");
-        printf("7. Display the linked list\n");
+    
+        printf("1. Insert end  \n");
+        printf("2. Delete end  \n");
+        printf("3. Insert frist\n");
+        printf("4. Delete frist\n");
+        printf("5. Insert mid  \n");
+        printf("6. Delete mid  \n");
+        printf("7. Display     \n");
         printf("8. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -192,14 +207,11 @@ int main()
 
             case 8:
                 exit(0);
-                break;
 
-            default :
-                printf("invaid value intered ");    
-                break;
+            default:
+                printf("Invalid choice.\n");
+                exit(0);
         }
-
-
-    }
+    } 
     return 0;
-}    
+}
